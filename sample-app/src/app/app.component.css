@@ -1,0 +1,4 @@
+h1, h2, p, ul, li{
+    display: inline-block;
+    text-align: center;
+}

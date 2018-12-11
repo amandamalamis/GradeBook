@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<p class='text-info'>
+  Edit an assignment or grade:
+</p>
+<body>
+    <!-- {{ error }} -->
+    <p *ngIf='error.assignment'> {{error.assignment.message}} </p>
+    <p *ngIf='error.class'> {{error.class.message}} </p>
+    <!-- <p *ngIf='error.url'> {{error.url.message}} </p> -->
+    <!-- <p *ngIf='error.url'> {{error.url.message}} </p> -->
+
+
+
+    <form (submit)="onSubmitEdit()">
+    <input type = "hidden" value= "editGrade._id">
+      Assignment: <input type="text" name="editGrade.assignment" [(ngModel)]="editGrade.assignment" placeholder= "editGrade.assignment"/> <br>
+      Class: $ <input type="text" name="editGrade.class" [(ngModel)]="editGrade.class" placeholder= "editGrade.class"/> <br> 
+      <!-- Image URL: <input type="url" name="editGrade.url" [(ngModel)]="editGrade.url" placeholder= "editProduct.url"/> <br> -->
+
+      <input type="submit" value="Edit"/>
+    </form>
+
+<button type='button' [routerLink]="['/']">Cancel </button>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<h3> Information about the assignment you selected: </h3>
+<!-- <div *ngFor="let task of tasks">
+
+<div *ngFor="let s of show"> -->
+<!-- <div *ngFor= "show"> -->
+
+  <div *ngIf="showGrade">
+    <p>Assignment: {{showGrade.title}}</p>
+    <p>Grade: $ {{showGrade.price}}</p>
+    <p> {{showGrade.url}} </p>
+    <!-- <h4> Created at: {{ showProduct.created_at}} </h4>
+    <h4> Updated at: {{ showProduct.updated_at}} </h4> -->
+
+</div>
+
+<button type='button' [routerLink]="['/']">Go Back </button>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<a [routerLink]="['/create']"></a>
+<p class='text-info'>
+  Add an assignment:
+</p>
+<body>
+  <!-- {{ error }} -->
+    <!-- {{ error | json }} -->
+    <p *ngIf='error.assignment'> {{error.assignment.message}} </p>
+    <p *ngIf='error.class'> {{error.class.message }} </p>
+    <!-- <p *ngIf='error.url'> {{error.url.message}} </p> -->
+
+  <form (submit)='onSubmitAdd()'>
+    <div class='form-group'>
+      Assignment name: <input type="text" name="newGrade.assignment" [(ngModel)]="newGrade.assignment" /> <br> <br>
+      Class: <input type="text" name="newGrade.class" [(ngModel)]="newGrade.class" /> <br> <br>
+      <!-- Image URL: <input type="text" name="newProduct.url" [(ngModel)]="newAssignment.url" /> <br> -->
+
+      <input type="submit" value="Add Assignment" />
+    </div>
+  </form>
+  <br><br>
+  <button type='button' [routerLink]="['/']">Cancel </button>
+
+</body>
+</html>
