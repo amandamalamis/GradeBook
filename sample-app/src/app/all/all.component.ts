@@ -10,10 +10,12 @@ export class AllComponent implements OnInit {
 
   constructor(private _httpService: HttpService) { }
   grades = [];
-  editGrade= {_id:'', assignment: '', class: ''};
+  editGrade= {_id:'', assignment: '', class: '', datecompleted: Date};
   loadEdit=false;
   show: {};
-  deleteGrade= {_id:'', assignment: '', class: ''};
+  deleteGrade= {_id:'', assignment: '', class: '', datecompleted: Date};
+
+  
 
   ngOnInit() {
     this.getAllGrades();
@@ -31,16 +33,26 @@ export class AllComponent implements OnInit {
 
   showData(grade) {
     console.log(grade);
+    // var datecompleted = '12/12/1955 12:00:00 AM';
+    // datecompleted = datecompleted.split(' ')[0];
+    // console.log(datecompleted + "DATE SPLIT WORKS");
+    var d = new Date
+    console.log(d.toDateString());
+
     this.show = grade;
   }
   getOneGrade(grade) {    
     this.loadEdit=true;
-    this.editGrade = {_id: grade._id, assignment: grade.assignment, class: grade.class};
-    console.log("Success at getone grade- edit ")
+
+    var d = new Date
+    console.log(d.toDateString());
+
+    this.editGrade = {_id: grade._id, assignment: grade.assignment, class: grade.class, datecompleted: grade.datecompleted};
+    console.log("Success at get one grade- edit ")
   }
 
   onDelete(grade) {  
-    this.deleteGrade = {_id: grade._id, assignment: grade.assignment, class: grade.class};
+    this.deleteGrade = {_id: grade._id, assignment: grade.assignment, class: grade.class, datecompleted: grade.datecompleted};
     let observable = this._httpService.deleteGrade(this.deleteGrade);
     observable.subscribe(data => {
       for (var i=0;i< this.grades.length; i++) { //this edits the tasks without a refresh by updating the tasks array (Defined above)

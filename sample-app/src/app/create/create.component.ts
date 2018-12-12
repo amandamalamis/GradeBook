@@ -9,10 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-  newGrade = { assignment: '', class: '' };
+  newGrade = { assignment: '', class: '', datecompleted: Date };
   assignments = [];
-  error= { assignment: '', class: ''};
-  message = '';
+  error= { assignment: '', class: '', datecompleted: Date};
+  message = {};
+  // message = '';
+  // message = { error.assignment.message, error.class.message, error.datecompleted.message }
 
   constructor(private _httpService: HttpService, private _router: Router) { }
   ngOnInit() {

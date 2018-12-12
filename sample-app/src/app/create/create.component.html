@@ -10,12 +10,16 @@
     <!-- {{ error | json }} -->
     <p *ngIf='error.assignment'> {{error.assignment.message}} </p>
     <p *ngIf='error.class'> {{error.class.message }} </p>
+    <p *ngIf='error.datecompleted'> {{error.datecompleted.message }} </p>
+    
     <!-- <p *ngIf='error.url'> {{error.url.message}} </p> -->
 
   <form (submit)='onSubmitAdd()'>
     <div class='form-group'>
       Assignment name: <input type="text" name="newGrade.assignment" [(ngModel)]="newGrade.assignment" /> <br> <br>
       Class: <input type="text" name="newGrade.class" [(ngModel)]="newGrade.class" /> <br> <br>
+      Date completed: <input type="date" name="newGrade.datecompleted" [(ngModel)]="newGrade.datecompleted" /> <br> <br>
+
       <!-- Image URL: <input type="text" name="newProduct.url" [(ngModel)]="newAssignment.url" /> <br> -->
 
       <input type="submit" value="Add Assignment" />

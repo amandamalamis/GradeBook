@@ -2,7 +2,12 @@
 <div *ngFor="let grade of grades"><br>
   <ul>
     <li>Assignment: {{grade.assignment}}</li>
-    <li>Class: $ {{grade.class}}</li> <br>
+    <li>Class: {{grade.class}} </li> <br>
+    <li> Date completed: {{grade.datecompleted}} </li>
+
+    <!-- <li> Date completed: {{grade.datecompleted.Date().toISOString()}} </li> -->
+    <!-- Put date in MM DD YY format without the time, or to string format instead  -->
+
     <!-- <li *ngIf="product.url"> Image: <img [src]="product.url"> </li> <br> -->
   </ul>
   <!-- <p *ngIf='error.url'> {{error.url.message}} </p> -->
@@ -10,11 +15,13 @@
   <button [routerLink]="['/edit', grade._id]"> Edit</button>
   <!-- <button (click)="showData(task)">Show Details</button> -->
   <button [routerLink]="['/show', grade._id]">Show Details</button>
+  <!-- console.log(new Date().toISOString()); -->
+
 
   <!-- <button (click)="removeTask(task._id)">Delete</button> -->
 
 
-  <button (click)='onDelete(grade)'>Delete</button>
+  <button (click) = 'onDelete(grade)'> Delete </button>
   <!-- use this one -->
 
   <br>

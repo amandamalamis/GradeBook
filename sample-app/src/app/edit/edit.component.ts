@@ -8,9 +8,10 @@ import { Router, Params, ActivatedRoute } from '@angular/router';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-  editGrade = { _id: "", assignment: "", class: ""};
+  editGrade = { _id: "", assignment: "", class: "", datecompleted: Date};
   grades = [];
-  error= { assignment: '', class: ''};
+  error = { assignment: '', class: '', datecompleted: Date};
+  message: any;
   loadEdit = false;
   idToEdit = ""
   params: any;

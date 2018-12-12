@@ -36,7 +36,7 @@ export class HttpService {
     return this._http.put(`/grades/${editGrade._id}`, editGrade);
   }
   deleteGrade(_id){
-  return this._http.delete(`/grades/${_id}`);
+    return this._http.delete(`/grades/${_id}`);
   }
   removeGrade(_id){
     return this._http.delete(`/grades/${_id}`);

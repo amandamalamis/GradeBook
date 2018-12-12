@@ -5,12 +5,15 @@
 <!-- <div *ngFor= "show"> -->
 
   <div *ngIf="showGrade">
-    <p>Assignment: {{showGrade.title}}</p>
-    <p>Grade: $ {{showGrade.price}}</p>
-    <p> {{showGrade.url}} </p>
-    <!-- <h4> Created at: {{ showProduct.created_at}} </h4>
-    <h4> Updated at: {{ showProduct.updated_at}} </h4> -->
+    <p>Assignment: {{showGrade.assignment}}</p>
+    <p>Class: {{showGrade.class}}</p>
+    <p>Date completed: {{showGrade.datecompleted}}</p>
+
+    <!-- <p> {{showGrade.url}} </p> -->
+    
+    <!-- <h4> Created at: {{ showGrade.created_at}} </h4>
+    <h4> Updated at: {{ showGrade.updated_at}} </h4> -->
 
 </div>
 
-<button type='button' [routerLink]="['/']">Go Back </button>
+<button type='button' [routerLink]="['/grades']">Go Back </button>

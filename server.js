@@ -12,7 +12,7 @@ app.set("views", path.join(__dirname, "./views"));
 var mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/Gradebook");
 
-var GradeSchema = new mongoose.Schema(
+var StudentSchema = new mongoose.Schema(
     {
         firstname: {
             type: String,
@@ -28,23 +28,31 @@ var GradeSchema = new mongoose.Schema(
         },
         studentnum: {
             type: Number,
-            required: true,
+            // required: true,
         },
+    });
+
+var GradeSchema = new mongoose.Schema(
+    {
         class: {
             type: String,
             required: [true, 'Class is required.'],
         },
         grade: {
             type: String,
-            required: true
+            // required: true
         },
         percent: {
             type: Number,
-            required: true
+            // required: true
         },
         assignment: {
             type: String,
             required: [true, 'Assignment is required.'],
+        },
+        datecompleted: {
+            type: Date,
+            required: [true, 'Please enter when this assignment was completed.']
         },
         // url:{
         //     type: String,
@@ -58,14 +66,17 @@ var GradeSchema = new mongoose.Schema(
 
         // },
         created_at: { type: Date, default: Date.now },
-        updated_at: { type: Date, default: Date.now }
-    },
-    {
-        timestamps: true
+        updated_at: { type: Date, default: Date.now },
+        
+        // timestamps: { type: true},
     });
 
 mongoose.model("Grade", GradeSchema);
 var Grade = mongoose.model("Grade");
+
+mongoose.model("Student", StudentSchema);
+var Student = mongoose.model("Student");
+
 mongoose.Promise = global.Promise;
 
 app.get('/grades', function (request, response) {
@@ -74,7 +85,7 @@ app.get('/grades', function (request, response) {
             console.log(error);
             response.json(error);
         } else {
-            console.log(data);
+            console.log(data + "at the else of grades");
             response.json(data)
         }
     });
@@ -101,6 +112,7 @@ app.post('/grades', function (request, response) {
     var grade = new Grade({
         assignment: request.body.assignment,
         class: request.body.class,
+        datecompleted: request.body.datecompleted
         // url: request.body.url
     });
     grade.save(function (error, data) {
@@ -115,7 +127,7 @@ app.post('/grades', function (request, response) {
 });
 
 app.put('/grades/:id', function (request, response) {
-    Grade.findByIdAndUpdate({ _id: request.params.id }, { $set: { assignment: request.body.assignment, class: request.body.class } }, { new: true, runValidators: true }, function (error, grade) {
+    Grade.findByIdAndUpdate({ _id: request.params.id }, { $set: { assignment: request.body.assignment, class: request.body.class, datecompleted: request.body.datecompleted } }, { new: true, runValidators: true }, function (error, grade) {
         if (error) {
             response.json(error)
         } else {
@@ -149,8 +161,8 @@ app.listen(8000, function () {
 });
 
 // this route will be triggered if any of the routes above did not match
-app.all("*", (req, res, next) => {
-    res.sendFile(path.resolve("./sample-app/dist/sample-app/index.html"))
+app.all("*", (request, response, next) => {
+    response.sendFile(path.resolve("./sample-app/dist/sample-app/index.html"))
 });
 
 
